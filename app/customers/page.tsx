@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 
+export const revalidate = 0
+
 export default async function CustomersPage() {
   const customers = await prisma.customer.findMany({
     include: {

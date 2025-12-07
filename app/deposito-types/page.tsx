@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 
+export const revalidate = 0
+
 export default async function DepositoTypesPage() {
   const depositoTypes = await prisma.depositoType.findMany({
     orderBy: {
