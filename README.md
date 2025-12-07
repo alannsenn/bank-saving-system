@@ -75,10 +75,6 @@ Where:
 - `#months`: Number of months between deposit date and withdrawal date
 - `yearly return`: Interest rate from deposito type (e.g., 0.03 for 3%)
 
-## Deployment
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions for Vercel and other platforms.
-
 ## License
 
 MIT
