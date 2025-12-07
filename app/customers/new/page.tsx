@@ -28,6 +28,7 @@ export default function NewCustomerPage() {
       }
 
       router.push('/customers')
+      router.refresh()
     } catch (err) {
       setError('Failed to create customer')
     } finally {

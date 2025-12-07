@@ -32,6 +32,7 @@ export default function NewDepositoTypePage() {
       }
 
       router.push('/deposito-types')
+      router.refresh()
     } catch (err) {
       setError('Failed to create deposito type')
     } finally {

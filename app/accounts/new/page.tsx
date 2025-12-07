@@ -75,6 +75,7 @@ export default function NewAccountPage() {
       }
 
       router.push('/accounts')
+      router.refresh()
     } catch (err) {
       setError('Failed to create account')
     } finally {

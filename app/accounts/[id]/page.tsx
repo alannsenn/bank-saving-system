@@ -106,6 +106,7 @@ export default function AccountDetailPage({ params }: { params: Promise<{ id: st
       }
 
       setDepositAmount('')
+      router.refresh()
       await fetchAccount()
     } catch (err) {
       setError('Failed to deposit')
@@ -138,6 +139,7 @@ export default function AccountDetailPage({ params }: { params: Promise<{ id: st
 
       setWithdrawAmount('')
       setCalculatedBalance(null)
+      router.refresh()
       await fetchAccount()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to withdraw')
