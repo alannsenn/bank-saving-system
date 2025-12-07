@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bank Saving System
+
+A full-stack bank saving system built with Next.js, featuring customer management, account management, and deposito type management with interest calculations.
+
+## Features
+
+- **Customer Management**: CRUD operations for customers
+- **Account Management**: Create accounts with different deposito types
+- **Deposito Types**: Pre-seeded with Bronze (3%), Silver (5%), and Gold (7%) yearly returns
+- **Deposit & Withdraw**: Track transactions with dates
+- **Balance Calculation**: Automatic ending balance calculation based on deposit date and withdrawal date
+- **MVC Architecture**: Clean separation of concerns with Models, Views, and Controllers
+
+## Tech Stack
+
+- **Frontend**: Next.js 16 (App Router), React, TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes, MVC Controllers
+- **Database**: SQLite (development), Prisma ORM
+- **Deployment**: Vercel (recommended)
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Set up database:**
+   ```bash
+   npx prisma migrate dev
+   npx prisma db seed
+   ```
+
+3. **Run development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open browser:**
+   Navigate to http://localhost:3000
+
+## Project Structure
+
+```
+bank-saving-system/
+├── app/
+│   ├── api/                  # API routes (Controllers)
+│   ├── customers/            # Customer pages
+│   ├── accounts/             # Account pages
+│   ├── deposito-types/       # Deposito type pages
+│   └── layout.tsx            # Root layout with navigation
+├── lib/
+│   ├── controllers/          # Business logic (MVC Controllers)
+│   └── prisma.ts             # Prisma client
+├── prisma/
+│   ├── schema.prisma         # Database schema (Models)
+│   ├── seed.ts               # Database seeder
+│   └── migrations/           # Database migrations
+└── DEPLOYMENT.md             # Deployment instructions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Business Logic
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Account Balance Calculation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+When a customer withdraws money, the system calculates the ending balance using:
 
-## Learn More
+```
+ending balance = starting balance * #months * monthly return
+monthly return = yearly return / 12
+```
 
-To learn more about Next.js, take a look at the following resources:
+Where:
+- `starting balance`: Current account balance
+- `#months`: Number of months between deposit date and withdrawal date
+- `yearly return`: Interest rate from deposito type (e.g., 0.03 for 3%)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions for Vercel and other platforms.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
